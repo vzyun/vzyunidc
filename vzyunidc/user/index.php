@@ -1,4 +1,9 @@
 <?php
+require_once __DIR__ . '/../includes/init.php';
+if (!isset($currentUser) || !$currentUser) {
+    header('Location: /?route=login');
+    exit;
+}
 // 路由参数
 $action = $_GET['action'] ?? 'dashboard';
 
