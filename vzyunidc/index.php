@@ -64,7 +64,17 @@ switch ($route) {
     case 'user':
         $user = requireUser();
         $action = $_GET['action'] ?? 'dashboard';
-        $theme->render('user/dashboard', ['user' => $user, 'action' => $action]);
+        $theme->render('user/index', ['user' => $user, 'action' => $action]);
+        break;
+        
+    case 'tickets':
+        $user = requireUser();
+        require __DIR__ . '/tickets.php';
+        exit;
+        
+    case 'logout':
+        Auth::instance()->logout();
+        redirect('/');
         break;
         
     default:
