@@ -1,0 +1,52 @@
+{
+    "name": "default",
+    "title": "vzyunIDC 默认主题",
+    "version": "1.0.0",
+    "author": "vzyun",
+    "description": "速科云风格主题，简洁大气，响应式设计",
+    "screenshots": [],
+    "settings": [
+        {
+            "key": "primary_color",
+            "label": "主色调",
+            "type": "color",
+            "default": "#2563eb"
+        },
+        {
+            "key": "secondary_color",
+            "label": "次要色",
+            "type": "color",
+            "default": "#0ea5e9"
+        },
+        {
+            "key": "header_logo",
+            "label": "Logo地址",
+            "type": "image",
+            "default": ""
+        },
+        {
+            "key": "banner_title",
+            "label": "Banner标题",
+            "type": "text",
+            "default": "高性能云服务，助力您的业务增长"
+        },
+        {
+            "key": "banner_subtitle",
+            "label": "Banner副标题",
+            "type": "text",
+            "default": "弹性扩展 · 安全可靠 · 全球部署"
+        },
+        {
+            "key": "footer_text",
+            "label": "底部文字",
+            "type": "textarea",
+            "default": "© 2026 vzyunIDC. All rights reserved."
+        },
+        {
+            "key": "announcement",
+            "label": "顶部公告",
+            "type": "text",
+            "default": ""
+        }
+    ]
+}
