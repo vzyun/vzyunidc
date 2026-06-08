@@ -2,6 +2,8 @@
 /**
  * vzyunIDC - 购物车/结算页
  */
+if (!defined('IN_VZYUNIDC')) { http_response_code(403); exit; }
+$userInfo = $user ?? $currentUser;
 $action = $_GET['action'] ?? 'cart';
 $db = DB::instance();
 

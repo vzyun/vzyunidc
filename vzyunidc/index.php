@@ -3,7 +3,8 @@
  * vzyunIDC - 用户端入口
  */
 
-// 加载配置
+// 定义入口常量 + 加载配置
+define('IN_VZYUNIDC', true);
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/init.php';
 
@@ -58,13 +59,13 @@ switch ($route) {
         
     case 'checkout':
         $user = requireUser();
-        $theme->render('checkout', ['user' => $user]);
+        $theme->render('checkout', ['user' => $user, 'userInfo' => $user]);
         break;
         
     case 'user':
         $user = requireUser();
         $action = $_GET['action'] ?? 'dashboard';
-        $theme->render('user/index', ['user' => $user, 'action' => $action]);
+        $theme->render('user/index', ['user' => $user, 'action' => $action, 'userInfo' => $user]);
         break;
         
     case 'tickets':

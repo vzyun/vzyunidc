@@ -6,6 +6,7 @@
 
 // 加载项目根目录配置
 $rootDir = dirname(__DIR__);
+define('IN_VZYUNIDC', true);
 require_once $rootDir . '/includes/config.php';
 
 // 启动Session

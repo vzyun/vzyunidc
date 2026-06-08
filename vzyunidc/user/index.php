@@ -1,9 +1,8 @@
 <?php
-require_once __DIR__ . '/../includes/init.php';
-if (!isset($currentUser) || !$currentUser) {
-    header('Location: /?route=login');
-    exit;
-}
+// vzyunIDC - 用户中心 (由 index.php 路由 require 加载)
+// 禁止直接访问!
+if (!defined('IN_VZYUNIDC')) { http_response_code(403); echo 'Forbidden'; exit; }
+
 // 路由参数
 $action = $_GET['action'] ?? 'dashboard';
 
@@ -19,7 +18,7 @@ switch ($action) {
         <div class="container" style="padding-top:100px;padding-bottom:40px;">
             <div class="row g-4">
                 <div class="col-lg-3">
-                    <?php include __DIR__ . '/user/sidebar.php'; ?>
+                    <?php include __DIR__ . '/sidebar.php'; ?>
                 </div>
                 <div class="col-lg-9">
                     <div style="background:white;border-radius:12px;border:1px solid var(--gray-200);padding:24px;margin-bottom:20px;">
@@ -66,7 +65,7 @@ switch ($action) {
         ?>
         <div class="container" style="padding-top:100px;padding-bottom:40px;">
             <div class="row g-4">
-                <div class="col-lg-3"><?php include __DIR__ . '/user/sidebar.php'; ?></div>
+                <div class="col-lg-3"><?php include __DIR__ . '/sidebar.php'; ?></div>
                 <div class="col-lg-9">
                     <div style="background:white;border-radius:12px;border:1px solid var(--gray-200);padding:24px;">
                         <h5>账户资料</h5>
@@ -107,7 +106,7 @@ switch ($action) {
         ?>
         <div class="container" style="padding-top:100px;padding-bottom:40px;">
             <div class="row g-4">
-                <div class="col-lg-3"><?php include __DIR__ . '/user/sidebar.php'; ?></div>
+                <div class="col-lg-3"><?php include __DIR__ . '/sidebar.php'; ?></div>
                 <div class="col-lg-9">
                     <div style="background:white;border-radius:12px;border:1px solid var(--gray-200);">
                         <div style="padding:16px 20px;border-bottom:1px solid var(--gray-200);"><h5 class="mb-0">我的订单</h5></div>
@@ -155,7 +154,7 @@ switch ($action) {
         ?>
         <div class="container" style="padding-top:100px;padding-bottom:40px;">
             <div class="row g-4">
-                <div class="col-lg-3"><?php include __DIR__ . '/user/sidebar.php'; ?></div>
+                <div class="col-lg-3"><?php include __DIR__ . '/sidebar.php'; ?></div>
                 <div class="col-lg-9">
                     <div style="background:white;border-radius:12px;border:1px solid var(--gray-200);">
                         <div style="padding:16px 20px;border-bottom:1px solid var(--gray-200);"><h5 class="mb-0">我的产品</h5></div>

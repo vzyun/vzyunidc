@@ -1,7 +1,7 @@
 <div class="container" style="padding-top:100px;padding-bottom:40px;">
     <div class="row g-4">
         <div class="col-lg-3">
-            <?php include __DIR__ . '/../themes/default/user/sidebar.php'; ?>
+            <?php include __DIR__ . '/sidebar.php'; ?>
         </div>
         <div class="col-lg-9">
             <div style="background:white;border-radius:12px;border:1px solid var(--gray-200);padding:32px; text-align:center;">

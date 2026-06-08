@@ -1,4 +1,5 @@
 <?php
+if (!defined("IN_VZYUNIDC")) { http_response_code(403); exit; }
 /**
  * vzyunIDC - 产品API接口
  */

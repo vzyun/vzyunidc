@@ -1,12 +1,12 @@
 <?php
 /**
  * vzyunIDC - 工单系统前端路由
+ * 由 index.php require 加载，\$user 已定义
  */
+if (!defined('IN_VZYUNIDC')) { http_response_code(403); exit; }
 $action = $_GET['action'] ?? 'list';
 $db = DB::instance();
-
-// 用户必须登录
-$userInfo = Auth::instance()->getUser();
+$userInfo = $user ?? Auth::instance()->getUser();
 
 // 提交工单
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'create') {
@@ -151,7 +151,12 @@ switch ($action) {
         <div class="container" style="padding-top:100px;padding-bottom:40px;">
             <div class="row g-4">
                 <div class="col-lg-3">
-                    <?php include __DIR__ . '/themes/default/user/sidebar.php'; ?>
+                    <?php
+// sidebar 路径适配
+$sidebarFile = __DIR__ . '/themes/default/user/sidebar.php';
+if (!file_exists($sidebarFile)) $sidebarFile = __DIR__ . '/user/sidebar.php';
+include $sidebarFile;
+?>
                 </div>
                 <div class="col-lg-9">
                     <div style="background:white;border-radius:12px;border:1px solid var(--gray-200);">
