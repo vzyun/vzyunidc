@@ -1,0 +1,28 @@
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 缓存
+/cache/*
+!/cache/.gitkeep
+
+# 上传
+/uploads/*
+!/uploads/.gitkeep
+
+# 配置文件（包含敏感信息）
+/config.php
+/includes/config.php
+
+# 日志
+*.log
+
+# 第三方库（如有Composer）
+/vendor/
+/node_modules/
