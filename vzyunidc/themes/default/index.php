@@ -7,10 +7,11 @@ require_once __DIR__ . '/header.php';
 ?>
 
 <!-- Hero Banner -->
-<section class="hero">
-    <div class="hero-content">
+<section class="hero" style="background:linear-gradient(135deg,#0f172a,#1e293b);position:relative;overflow:hidden;">
+    <div style="position:absolute;inset:0;opacity:0.4;background-image:url('/themes/default/assets/hero-bg.svg');background-size:cover;background-position:center;"></div>
+    <div class="hero-content" style="position:relative;z-index:1;">
         <h1><?= h(getSetting('hero_title', '高性能云服务<br>助力您的<span>业务增长</span>')) ?></h1>
-        <p><?= h(getSetting('hero_subtitle', '弹性扩展 · 安全可靠 · 全球部署 · 极速体验')) ?></p>
+        <p><?= h(getSetting('hero_subtitle', '弹性扩展 · 安全可靠 · 全球部署 · 极速体验')) ?>
         <div class="hero-actions">
             <a href="/?route=products" class="btn btn-primary btn-lg">
                 <i class="fas fa-rocket"></i> 立即选购
@@ -52,7 +53,7 @@ require_once __DIR__ . '/header.php';
         <div class="product-card">
             <div class="product-card-header">
                 <div class="icon">
-                    <i class="fas fa-server"></i>
+                    <img src="/themes/default/assets/icon-server.svg" alt="server" style="width:40px;height:40px;">
                 </div>
                 <h3><?= h($product['name']) ?></h3>
                 <span class="type"><?= h($product['type']) ?></span>
@@ -92,32 +93,32 @@ require_once __DIR__ . '/header.php';
     </div>
     <div class="features-grid">
         <div class="feature-card">
-            <div class="icon"><i class="fas fa-bolt"></i></div>
+            <div class="icon"><img src="/themes/default/assets/icon-cloud.svg" alt="deploy" style="width:40px;height:40px;"></div>
             <h4>极速部署</h4>
             <p>分钟级快速部署，弹性扩展，按需付费，轻松应对业务增长</p>
         </div>
         <div class="feature-card">
-            <div class="icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="icon"><img src="/themes/default/assets/icon-shield.svg" alt="shield" style="width:40px;height:40px;"></div>
             <h4>安全可靠</h4>
             <p>多层安全防护，DDoS防护，数据加密，99.9%在线率保障</p>
         </div>
         <div class="feature-card">
-            <div class="icon"><i class="fas fa-globe"></i></div>
+            <div class="icon"><img src="/themes/default/assets/icon-cloud.svg" alt="global" style="width:40px;height:40px;"></div>
             <h4>全球覆盖</h4>
             <p>全球50+数据中心节点，CN2 GIA直连，低延迟高速访问</p>
         </div>
         <div class="feature-card">
-            <div class="icon"><i class="fas fa-headset"></i></div>
+            <div class="icon"><img src="/themes/default/assets/icon-server.svg" alt="support" style="width:40px;height:40px;"></div>
             <h4>专业支持</h4>
             <p>7×24小时技术支持，工单即时响应，专业技术团队</p>
         </div>
         <div class="feature-card">
-            <div class="icon"><i class="fas fa-chart-line"></i></div>
+            <div class="icon"><img src="/themes/default/assets/icon-vps.svg" alt="scale" style="width:40px;height:40px;"></div>
             <h4>弹性扩展</h4>
             <p>资源弹性伸缩，随时调整配置，按实际使用付费</p>
         </div>
         <div class="feature-card">
-            <div class="icon"><i class="fas fa-cog"></i></div>
+            <div class="icon"><img src="/themes/default/assets/icon-domain.svg" alt="manage" style="width:40px;height:40px;"></div>
             <h4>管理便捷</h4>
             <p>直观的控制面板，一键重装、重启、监控，操作简单</p>
         </div>

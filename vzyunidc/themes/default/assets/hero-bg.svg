@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:0.08"/>
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:0.04"/>
+    </linearGradient>
+    <linearGradient id="serverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- 背景网格 -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e2e8f0" stroke-width="0.5"/>
+  </pattern>
+  <rect width="800" height="500" fill="url(#heroGrad)"/>
+  <rect width="800" height="500" fill="url(#grid)" opacity="0.5"/>
+  
+  <!-- 服务器图标 -->
+  <g transform="translate(250, 120) scale(0.8)">
+    <rect x="0" y="0" width="120" height="180" rx="12" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+    <rect x="0" y="0" width="120" height="40" rx="12" fill="url(#serverGrad)" opacity="0.1"/>
+    <circle cx="60" cy="20" r="8" fill="url(#serverGrad)"/>
+    <rect x="20" y="55" width="80" height="6" rx="3" fill="#e2e8f0"/>
+    <rect x="20" y="70" width="60" height="6" rx="3" fill="#e2e8f0"/>
+    <rect x="20" y="85" width="80" height="6" rx="3" fill="#e2e8f0"/>
+    <rect x="20" y="100" width="40" height="6" rx="3" fill="#e2e8f0"/>
+    <circle cx="30" cy="125" r="5" fill="#10b981"/>
+    <circle cx="50" cy="125" r="5" fill="#10b981"/>
+    <circle cx="70" cy="125" r="5" fill="#f59e0b"/>
+    <circle cx="90" cy="125" r="5" fill="#e2e8f0"/>
+    <rect x="20" y="140" width="80" height="20" rx="4" fill="#f1f5f9"/>
+    <rect x="20" y="145" width="50" height="10" rx="2" fill="url(#serverGrad)" opacity="0.3"/>
+  </g>
+  
+  <!-- 第二个服务器 -->
+  <g transform="translate(420, 80) scale(0.6)">
+    <rect x="0" y="0" width="120" height="180" rx="12" fill="white" stroke="#e2e8f0" stroke-width="2"/>
+    <rect x="0" y="0" width="120" height="40" rx="12" fill="url(#serverGrad)" opacity="0.1"/>
+    <circle cx="60" cy="20" r="8" fill="url(#serverGrad)"/>
+    <rect x="20" y="55" width="80" height="6" rx="3" fill="#e2e8f0"/>
+    <rect x="20" y="70" width="60" height="6" rx="3" fill="#e2e8f0"/>
+    <rect x="20" y="85" width="80" height="6" rx="3" fill="#e2e8f0"/>
+    <rect x="20" y="100" width="40" height="6" rx="3" fill="#e2e8f0"/>
+    <circle cx="30" cy="125" r="5" fill="#10b981"/>
+    <circle cx="50" cy="125" r="5" fill="#10b981"/>
+    <circle cx="70" cy="125" r="5" fill="#f59e0b"/>
+    <circle cx="90" cy="125" r="5" fill="#e2e8f0"/>
+    <rect x="20" y="140" width="80" height="20" rx="4" fill="#f1f5f9"/>
+    <rect x="20" y="145" width="50" height="10" rx="2" fill="url(#serverGrad)" opacity="0.3"/>
+  </g>
+  
+  <!-- 云朵装饰 -->
+  <g opacity="0.3">
+    <path d="M 500 200 Q 520 180 540 200 Q 560 190 570 210 L 490 210 Z" fill="#94a3b8"/>
+    <path d="M 180 280 Q 200 260 220 280 Q 240 270 250 290 L 170 290 Z" fill="#94a3b8"/>
+  </g>
+  
+  <!-- 数据流线 -->
+  <g opacity="0.15">
+    <path d="M 100 350 Q 200 300 300 350 T 500 350" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,4"/>
+    <path d="M 150 380 Q 250 330 350 380 T 550 380" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4,4"/>
+  </g>
+</svg>

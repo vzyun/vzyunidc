@@ -22,7 +22,8 @@
 <header class="header">
     <div class="header-inner">
         <a href="/" class="logo">
-            <span>vzyunIDC</span>
+            <img src="/themes/default/assets/logo.svg" alt="vzyunIDC" style="height:32px;width:32px;vertical-align:middle;">
+            <span style="margin-left:8px;">vzyunIDC</span>
         </a>
         <nav class="nav">
             <a href="/" class="<?= !isset($_GET['route']) || $_GET['route'] === 'index' ? 'active' : '' ?>">首页</a>

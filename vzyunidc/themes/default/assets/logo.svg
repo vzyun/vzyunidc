@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <rect width="120" height="120" rx="24" fill="url(#logog)"/>
+  <defs>
+    <linearGradient id="logog" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <path d="M36 60 L52 44 L68 60 L52 76Z" fill="white" opacity="0.9"/>
+  <path d="M52 44 L84 44 L68 60 L52 44Z" fill="white" opacity="0.5"/>
+  <path d="M36 60 L68 60 L52 76L36 60Z" fill="white" opacity="0.3"/>
+  <circle cx="52" cy="60" r="6" fill="#2563eb"/>
+</svg>
