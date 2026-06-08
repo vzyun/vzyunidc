@@ -1,70 +1,51 @@
 /**
- * vzyunIDC - 前端主脚本
+ * vzyunIDC - 前端JS
  */
 
 $(function() {
+    // 导航滚动效果
+    var $header = $('#mainHeader');
+    $(window).on('scroll', function() {
+        if ($(this).scrollTop() > 50) {
+            $header.addClass('scrolled');
+        } else {
+            $header.removeClass('scrolled');
+        }
+    });
+
     // Toast提示
     window.showToast = function(msg, type) {
         type = type || 'success';
-        const icon = { success: 'fa-check-circle', danger: 'fa-exclamation-circle', warning: 'fa-exclamation-triangle', info: 'fa-info-circle' };
-        const html = '<div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index:9999">' +
-            '<div class="toast align-items-center text-bg-' + type + ' border-0" role="alert">' +
-            '<div class="d-flex"><div class="toast-body"><i class="fas ' + (icon[type] || 'fa-info-circle') + '"></i> ' + msg + '</div>' +
-            '<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button></div></div></div>';
-        const $toast = $(html);
-        $('body').append($toast);
-        const toast = new bootstrap.Toast($toast.find('.toast')[0], { delay: 3000 });
-        toast.show();
-        $toast.find('.toast').on('hidden.bs.toast', function() { $toast.remove(); });
+        var icon = type === 'success' ? 'check-circle' : type === 'danger' ? 'exclamation-circle' : 'info-circle';
+        var html = '<div class="toast-custom ' + type + '">' +
+            '<i class="fas fa-' + icon + '" style="color:var(--' + (type === 'danger' ? 'danger' : type === 'success' ? 'success' : 'info') + ');"></i> ' +
+            msg + '</div>';
+        $('#toastContainer').append(html);
+        setTimeout(function() { $('.toast-custom:first').remove(); }, 3000);
     };
 
-    // AJAX全局设置
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') || ''
-        },
-        error: function(xhr) {
-            if (xhr.status === 401) {
-                window.location.href = '/?route=login';
-            }
-        }
-    });
-
-    // 表单验证
-    $('.form-control').on('blur', function() {
-        const $this = $(this);
-        if ($this.prop('required') && !$this.val()) {
-            $this.addClass('error').removeClass('success');
-        } else if ($this.attr('type') === 'email' && $this.val()) {
-            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            $this.toggleClass('error', !re.test($this.val())).toggleClass('success', re.test($this.val()));
-        } else if ($this.val()) {
-            $this.addClass('success').removeClass('error');
-        }
-    });
-
-    // 加入购物车
-    $(document).on('click', '.add-to-cart', function() {
-        const productId = $(this).data('id');
-        $.post('/api/product.php?action=add_cart', { product_id: productId }, function(res) {
+    // AJAX表单
+    $(document).on('submit', '.ajax-form', function(e) {
+        e.preventDefault();
+        var $form = $(this);
+        var $btn = $form.find('[type="submit"]');
+        $btn.prop('disabled', true).html('<span class="spinner" style="width:16px;height:16px;border-width:2px;"></span>');
+        $.post($form.attr('action'), $form.serialize(), function(res) {
             if (res.code === 0) {
-                showToast('已加入购物车', 'success');
-            } else if (res.code === 401) {
-                window.location.href = '/?route=login';
+                showToast(res.msg || '操作成功', 'success');
+                if (res.redirect) setTimeout(function() { location.href = res.redirect; }, 500);
             } else {
-                showToast(res.msg, 'danger');
+                showToast(res.msg || '操作失败', 'danger');
             }
-        }, 'json');
+        }).fail(function() {
+            showToast('网络错误', 'danger');
+        }).always(function() {
+            $btn.prop('disabled', false).html($btn.data('original-text') || $btn.text());
+        });
     });
 
-    // 删除购物车
-    $(document).on('click', '.remove-cart', function() {
-        const cartId = $(this).data('id');
-        $.post('/api/product.php?action=remove_cart', { cart_id: cartId }, function(res) {
-            if (res.code === 0) {
-                $(this).closest('.cart-item').fadeOut();
-                showToast('已移除', 'success');
-            }
-        }, 'json');
-    });
+    // Confirm操作
+    window.confirmAction = function(msg, callback) {
+        if (confirm(msg || '确定执行此操作？')) { callback(); }
+    };
 });

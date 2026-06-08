@@ -1,80 +1,44 @@
 <?php
-/**
- * vzyunIDC - 登录页
- */
 $pageTitle = '用户登录';
+require_once __DIR__ . '/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= h($pageTitle) ?> - <?= SITE_NAME ?></title>
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/themes/default/css/style.css?v=1.0">
-</head>
-<body>
 <div class="auth-page">
     <div class="auth-box">
-        <div class="logo">
-            <h2>vzyunIDC</h2>
-        </div>
-        <h3>用户登录</h3>
-
-        <form id="loginForm" method="post" action="/api/auth.php?action=login">
-            <div id="alertBox"></div>
-
-            <div class="form-group">
-                <label for="username">用户名 / 邮箱</label>
-                <input type="text" class="form-control" id="username" name="username" required
-                       placeholder="请输入用户名或邮箱">
+        <h3>欢迎回来</h3>
+        <p class="subtitle">登录您的账户以继续</p>
+        <form id="loginForm">
+            <div class="mb-3">
+                <label class="form-label">用户名 / 邮箱</label>
+                <input type="text" name="username" class="form-control" placeholder="请输入用户名或邮箱" required>
             </div>
-
-            <div class="form-group">
-                <label for="password">密码</label>
-                <input type="password" class="form-control" id="password" name="password" required
-                       placeholder="请输入密码">
+            <div class="mb-3">
+                <label class="form-label">密码</label>
+                <input type="password" name="password" class="form-control" placeholder="请输入密码" required>
             </div>
-
-            <div class="form-group" style="display:flex;justify-content:space-between;align-items:center;">
-                <label style="margin:0;">
-                    <input type="checkbox" name="remember" value="1"> 记住登录
-                </label>
-                <a href="/?route=forgot" style="font-size:14px;">忘记密码？</a>
-            </div>
-
-            <button type="submit" class="btn btn-primary" style="width:100%;padding:12px;font-size:16px;">
-                <i class="fas fa-sign-in-alt"></i> 登录
-            </button>
+            <button type="submit" class="btn btn-primary">登 录</button>
         </form>
-
-        <div class="form-footer">
-            还没有账号？<a href="/?route=register">立即注册</a>
+        <div class="auth-footer">
+            还没有账户？<a href="/?route=register">立即注册</a>
         </div>
     </div>
 </div>
-
-<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <script>
 $('#loginForm').on('submit', function(e) {
     e.preventDefault();
-    const $btn = $(this).find('button[type="submit"]');
-    $btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> 登录中...');
-    $('#alertBox').html('');
-
-    $.post($(this).attr('action'), $(this).serialize(), function(res) {
+    var $btn = $(this).find('[type="submit"]');
+    $btn.prop('disabled', true).html('<span class="spinner" style="width:16px;height:16px;border-width:2px;"></span>');
+    $.post('/api/auth.php?action=login', $(this).serialize(), function(res) {
         if (res.code === 0) {
-            window.location.href = '/?route=user';
+            showToast('登录成功', 'success');
+            setTimeout(function() { location.href = res.redirect || '/'; }, 500);
         } else {
-            $('#alertBox').html('<div class="alert alert-danger">' + res.msg + '</div>');
-            $btn.prop('disabled', false).html('<i class="fas fa-sign-in-alt"></i> 登录');
+            showToast(res.msg, 'danger');
+            $btn.prop('disabled', false).text('登 录');
         }
-    }, 'json').fail(function() {
-        $('#alertBox').html('<div class="alert alert-danger">网络错误，请重试</div>');
-        $btn.prop('disabled', false).html('<i class="fas fa-sign-in-alt"></i> 登录');
+    }).fail(function() {
+        showToast('网络错误', 'danger');
+        $btn.prop('disabled', false).text('登 录');
     });
 });
 </script>
-</body>
-</html>
+<?php require_once __DIR__ . '/footer.php'; ?>
